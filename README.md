@@ -22,3 +22,6 @@
   <tr><td>Basketball Stars</td><td>Slope</td></tr>
   <tr><td>Paper IO 2</td></tr>
 </table>
+<br>
+<h3>Releases:</h3>
+<li><a href="https://github.com/Wande-inc/Emerald/releases/tag/v0-beta">v0-beta</a> Basic site structure made</li>
