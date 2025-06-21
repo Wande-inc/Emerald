@@ -13,21 +13,7 @@
         "category":"action",
         "details":"A fast pased, territorial game where you try to conquer the map"
     },
-        {
-        "name":"basketball stars",
-        "id":"basketball-stars",
-        "img":"png",
-        "category":"sports",
-        "details":"A short, 2d, multiplayer game of basketball"
-    }
     {
-        "name":"paper IO 2",
-        "id":"paper-io-2",
-        "img":"jpg",
-        "category":"action",
-        "details":"A fast pased, territorial game where you try to conquer the map"
-    },
-        {
         "name":"basketball stars",
         "id":"basketball-stars",
         "img":"png",
@@ -41,7 +27,21 @@
         "category":"action",
         "details":"A fast pased, territorial game where you try to conquer the map"
     },
-        {
+    {
+        "name":"basketball stars",
+        "id":"basketball-stars",
+        "img":"png",
+        "category":"sports",
+        "details":"A short, 2d, multiplayer game of basketball"
+    },
+    {
+        "name":"paper IO 2",
+        "id":"paper-io-2",
+        "img":"jpg",
+        "category":"action",
+        "details":"A fast pased, territorial game where you try to conquer the map"
+    },
+    {
         "name":"basketball stars",
         "id":"basketball-stars",
         "img":"png",
