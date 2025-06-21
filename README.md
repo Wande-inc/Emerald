@@ -1,4 +1,22 @@
-# Emerald [BETA VERSION COMING SOON]
-A game website you can download to be unbl0cked forever
+# Emerald [beta]
+<i>"A game website you can download to be unbl0cked forever"</i>
 <br>
-<blockquote>The beta version is currently in the making, and will be released soon</blockquote>
+<h3>Features:</h3>
+<li>🪶 Very lightweight <i>(Only 49 bytes!)</i></li>
+<li>🔁 Automatic updates</li>
+<li>❌ Unbl0ckable in workplace/school</li>
+<li>🎮 Tons of free games without ads</li>
+<li>😁 Easy to use</li>
+<br>
+<h3>How to use:</h3>
+1. Download the emerald.html file and open it in your browser
+<br><br>
+<b>OR</b>
+<br><br>
+2. Use the script tag <code><script src="https://bit.ly/emeraldJS"></script></code> in ANY html runner
+<br><br><br>
+<table>
+  <tr><th>Games:</th></tr>
+  <tr><td>Basketball Stars</td></tr>
+  <tr><td>Paper IO 2</td></tr>
+</table>
