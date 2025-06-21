@@ -1,4 +1,4 @@
-# Emerald [Work in progress]
+# Emerald [BETA VERSION COMING SOON]
 A game website you can download to be unbl0cked forever
-<blockquote>ETERNAL is being taken down. Emerald will be the new version with a better UI & UX
-<br>Also movies are being removed due to copyrighting</blockquote>
+<br>
+<blockquote>The beta version is currently in the making, and will be released soon</blockquote>
