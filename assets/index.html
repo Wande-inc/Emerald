@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - Google Drive</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="icon"
+      href="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_48dp.png"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
+
+      :root {
+        --main: #69b578;
+        --main-opacity: #69b57884;
+        --main2: #69b578bd;
+        --rad: 10px;
+        --cat-action: #e57373;
+        --cat-adventure: #64b5f6;
+        --cat-RPG: #ba68c8;
+        --cat-simulation: #ffd54f;
+        --cat-strategy: #4db6ac;
+        --cat-sports: #7ddfce;
+        --cat-racing: #ffb74d;
+        --cat-fighting: #f06277;
+        --cat-shooter: #90caf9;
+        --cat-platformer: #a1887f;
+        --background: #010101;
+        --primary: #69b578;
+        --primary-dark: #558b2f;
+        --danger: #e57373;
+        --text: #fefefe;
+        --primary-text: #fefefe;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        line-height: 1;
+        font-weight: 400;
+        font-size: 2rem;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        text-decoration: none;
+        background-color: transparent;
+        list-style: none;
+        color: #fefefe;
+        font-family: "Inter", sans-serif;
+        /* border: solid 2px #000; */
+      }
+
+      html {
+        font-size: 62.5%;
+        background-color: #010101;
+        overflow-x: hidden;
+      }
+
+      /* Basic Rules */
+      h1 {
+        font-size: 4.8rem;
+        font-weight: 600;
+      }
+
+      h2 {
+        font-size: 4rem;
+        font-weight: 600;
+      }
+
+      h3 {
+        font-size: 3.4rem;
+        font-weight: 500;
+      }
+
+      h4 {
+        font-size: 2.8rem;
+        font-weight: 500;
+      }
+
+      h5 {
+        font-size: 2.3rem;
+        font-weight: 500;
+      }
+
+      h6 {
+        font-size: 2rem;
+        font-weight: 500;
+      }
+
+      p,
+      span {
+        font-size: 1.6rem;
+        font-weight: 400;
+      }
+
+      /* Navigation */
+
+      .mainNav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 15vw;
+        height: 100vh;
+        background-color: #111111cc;
+        backdrop-filter: blur(10px);
+        border-right: solid 1px #fefefe;
+        transition: left 0.3s;
+        z-index: 1000;
+      }
+
+      .navItems {
+        display: grid;
+        grid-template-rows: 2fr repeat(11, 1fr);
+        height: 90%;
+        width: 70%;
+        align-items: center;
+      }
+
+      .navLink {
+        font-size: 1.6rem;
+        font-weight: 500;
+        transition: all 0.3s;
+        text-align: left;
+        width: 100%;
+      }
+
+      .navHeader {
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: var(--main);
+      }
+
+      .navLink:hover {
+        font-weight: 700;
+        transform: scale(1.02);
+        color: var(--main);
+      }
+
+      .navLink:active {
+        transform: scale(0.95);
+      }
+
+      .navToggleBtn {
+        position: fixed;
+        top: 2rem;
+        left: 2rem;
+        z-index: 1001;
+        background: #222;
+        color: #fff;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        font-size: 2.5rem;
+        border: none;
+        box-shadow: 0 2px 8px #0007;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: left 0.3s;
+      }
+
+      /* Footer */
+
+      footer {
+        padding: 3rem 0 2rem 0;
+        width: 100vw;
+        background: #111;
+        border-top: 1px solid #222;
+        color: #fefefe;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem;
+      }
+
+      .footLinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .fooLink,
+      .footLinks a {
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-decoration: none;
+        background: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      .fooLink:hover,
+      .footLinks a:hover {
+        color: var(--main);
+      }
+
+      /* Home Page */
+
+      .hero {
+        width: 100%;
+        height: 90vh;
+        padding-top: 10%;
+        display: grid;
+        grid-template-columns: 2fr 3fr 2fr;
+        grid-template-rows: 2fr 2fr 3fr 2fr;
+        row-gap: 0.8rem;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .mainHeader,
+      .about,
+      .searchBox {
+        grid-column: 2/3;
+      }
+
+      .mainHeader {
+        grid-row: 1/2;
+      }
+
+      .mainHeader span {
+        font-size: 4.8rem;
+        font-weight: 700;
+        color: var(--main);
+      }
+
+      .about {
+        grid-row: 2/3;
+      }
+
+      .searchBox {
+        width: 100%;
+        height: 50%;
+        grid-row: 3/4;
+        display: grid;
+        background-color: #111;
+        border-radius: var(--rad);
+        padding-left: 1rem;
+        grid-template-columns: 7fr 1fr;
+        transition: all 0.2s linear;
+        outline: solid 3px var(--main);
+        box-shadow: 0 0 40px var(--main-opacity);
+      }
+
+      .searchBox:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 80px var(--main-opacity);
+      }
+
+      .searchBtn {
+        transition: all 0.2s;
+        background-color: #111;
+        border-radius: var(--rad);
+      }
+
+      .textInput {
+        display: inline-block;
+      }
+
+      .noResults {
+        color: #aaa;
+        font-size: 1.3rem;
+        text-align: center;
+        grid-column: 1/-1;
+        margin: 2rem 0;
+      }
+      .loading {
+        color: #aaa;
+        font-size: 1.3rem;
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .gameGrid {
+        width: 100%;
+        height: fit-content;
+        padding: 0 10%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2.8rem;
+      }
+
+      .gameCard {
+        transition: all 0.3s;
+        border-radius: var(--rad);
+        background-color: #111;
+        padding-bottom: 4px;
+      }
+
+      .gameCard:hover {
+        transform: translateY(-8px);
+        outline: solid 2px var(--main);
+        box-shadow: 0 10px 40px var(--main-opacity);
+      }
+
+      .gameCard:active {
+        transform: translateY(0px);
+        outline: solid 2px #fefefe;
+        box-shadow: 0 0 40px #fefefe84;
+      }
+
+      .gameIn {
+        max-width: 95vw;
+        width: 25.6rem;
+        aspect-ratio: 10/12;
+        border-radius: var(--rad);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        background-size: 100%;
+        background-position: top;
+        background-repeat: repeat;
+      }
+
+      .gameName {
+        width: 100%;
+        display: flex;
+        text-align: left;
+        text-transform: capitalize;
+        font-weight: 700;
+        font-size: 2.8rem;
+        padding-top: 12px;
+      }
+
+      .gameDetails {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+        line-height: 1.2;
+        color: var(--main2);
+        border-radius: var(--rad);
+        font-weight: 500;
+        text-align: left;
+        padding: 1.6rem 8px;
+        background: linear-gradient(0deg, #111, #111, #111c);
+      }
+
+      .gameCat {
+        transform: translate(8px, -50%);
+        font-weight: 600;
+        text-transform: capitalize;
+        position: absolute;
+        padding: 8px 16px;
+        border-radius: calc(var(--rad) / 2);
+        top: 0;
+        left: 0;
+      }
+
+      .gameCat.action {
+        background: var(--cat-action);
+      }
+
+      .gameCat.adventure {
+        background: var(--cat-adventure);
+      }
+
+      .gameCat.RPG {
+        background: var(--cat-RPG);
+      }
+
+      .gameCat.simulation {
+        background: var(--cat-simulation);
+        color: #333;
+      }
+
+      .gameCat.strategy {
+        background: var(--cat-strategy);
+      }
+
+      .gameCat.sports {
+        background: var(--cat-sports);
+      }
+
+      .gameCat.racing {
+        background: var(--cat-racing);
+      }
+
+      .gameCat.fighting {
+        background: var(--cat-fighting);
+      }
+
+      .gameCat.shooter {
+        background: var(--cat-shooter);
+      }
+
+      .gameCat.platformer {
+        background: var(--cat-platformer);
+      }
+
+      /* Game View Page */
+
+      .gameViewPage {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        min-height: 70vh;
+        padding: 32px 0 32px 0;
+        background: var(--background);
+        box-sizing: border-box;
+      }
+
+      .gameViewHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 16px;
+        padding: 2rem;
+        border-bottom-right-radius: var(--rad);
+        border-bottom-left-radius: var(--rad);
+        gap: 16px;
+        background-color: #111;
+        box-shadow: 0 0 80px var(--main-opacity);
+      }
+
+      .gameViewTitle {
+        flex: 1;
+        text-align: center;
+        font-size: 4rem;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: var(--primary-text);
+        margin: 0;
+      }
+
+      .backBtn,
+      .fullscreenBtn {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 18px;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .backBtn:hover,
+      .fullscreenBtn:hover {
+        background: var(--primary-dark);
+      }
+
+      .gameIframeContainer {
+        width: 100%;
+        max-width: 900px;
+        aspect-ratio: 16/9;
+        background: #181818;
+        border-top-right-radius: var(--rad);
+        border-top-left-radius: var(--rad);
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 80px var(--main-opacity);
+      }
+
+      #gameIframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-top-right-radius: var(--rad);
+        border-top-left-radius: var(--rad);
+        background: #000;
+      }
+
+      .gameViewError {
+        color: var(--danger);
+        text-align: center;
+        margin: 48px 0;
+        font-size: 1.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let page = "home";
+      const categories = [
+        "action",
+        "adventure",
+        "RPG",
+        "simulation",
+        "strategy",
+        "sports",
+        "racing",
+        "fighting",
+        "shooter",
+        "platformer",
+      ];
+
+      // Custom hook to fetch and filter games
+      function useGames(category = null) {
+        const [games, setGames] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+        const [error, setError] = React.useState(null);
+
+        React.useEffect(() => {
+          setLoading(true);
+          fetch(
+            "https://cdn.jsdelivr.net/gh/Wande-inc/Emerald@latest/assets/data.json"
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              let filtered = data;
+              if (category) {
+                filtered = data.filter(
+                  (g) =>
+                    g.category &&
+                    g.category.toLowerCase() === category.toLowerCase()
+                );
+              }
+              setGames(filtered);
+              setLoading(false);
+            })
+            .catch((e) => {
+              setError(e);
+              setLoading(false);
+            });
+        }, [category]);
+
+        return { games, loading, error };
+      }
+
+      // Add a new page for displaying a single game in an iframe
+      function GameViewPage({ game, onBack }) {
+        React.useEffect(() => {
+          if (game && game.url) {
+            openGame(game.url, "#game-iframe-container");
+          }
+        }, [game]);
+
+        if (!game) {
+          return <div className="gameViewError">Game not found.</div>;
+        }
+
+        return (
+          <>
+            <div className="gameViewPage">
+              <div className="gameViewHeader">
+                <button
+                  className="backBtn"
+                  onClick={onBack}
+                >
+                  &larr; Back
+                </button>
+                <h1 className="gameViewTitle">{game.name}</h1>
+                <button
+                  className="fullscreenBtn"
+                  onClick={() => {
+                    const iframe = document.getElementById("gameIframe");
+                    if (iframe && iframe.requestFullscreen)
+                      iframe.requestFullscreen();
+                  }}
+                >
+                  Fullscreen
+                </button>
+              </div>
+              <div
+                id="game-iframe-container"
+                className="gameIframeContainer"
+              ></div>
+            </div>
+            <Footer />
+          </>
+        );
+      }
+
+      // GameGrid component
+      function GameGrid({ games, search }) {
+        const filtered = React.useMemo(() => {
+          if (!search) return games;
+          const s = search.toLowerCase();
+          return games.filter(
+            (g) =>
+              (g.name && g.name.toLowerCase().includes(s)) ||
+              (g.category && g.category.toLowerCase().includes(s)) ||
+              (g.details && g.details.toLowerCase().includes(s))
+          );
+        }, [games, search]);
+
+        if (!filtered.length) {
+          return <div className="noGames">No games found.</div>;
+        }
+
+        return (
+          <div className="gameGrid">
+            {filtered.map((g) => (
+              <div
+                className="gameCard"
+                key={g.id}
+                onClick={() =>
+                  window.__setSelectedGame({
+                    ...g,
+                    url: `https://cdn.jsdelivr.net/gh/Wande-inc/Emerald@main/assets/games/${g.id}/index.html`,
+                  })
+                }
+              >
+                <div
+                  className="gameIn"
+                  style={{
+                    backgroundImage: `url(https://cdn.jsdelivr.net/gh/Wande-inc/Emerald@latest/assets/games/${g.id}/img.${g.img})`,
+                  }}
+                >
+                  <p className="gameDetails">
+                    <span className={"gameCat " + g.category}>
+                      {g.category}
+                    </span>
+                    <h3 className="gameName">{g.name}</h3>
+                    {g.details}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      }
+
+      // Main function, displays pages
+      function Emerald() {
+        // If a game is selected globally, show only the game view page
+        const [selectedGame, setSelectedGame] = React.useState(null);
+        window.__setSelectedGame = setSelectedGame; // for GameGrid to call
+
+        if (selectedGame) {
+          return (
+            <GameViewPage
+              game={selectedGame}
+              onBack={() => setSelectedGame(null)}
+            />
+          );
+        }
+
+        return (
+          <>
+            <Nav />
+            <PageSelection
+              pageName={page}
+              setSelectedGame={setSelectedGame}
+            />
+            <Footer />
+          </>
+        );
+      }
+
+      // Returns the proper page based off pageName
+      function PageSelection({ pageName }) {
+        if (categories.includes(pageName)) {
+          return <CategoryPage category={pageName} />;
+        } else {
+          return <HomePage />;
+        }
+      }
+
+      // Where to place function
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+      root.render(<Emerald />);
+
+      // Home page
+      function HomePage() {
+        const [search, setSearch] = React.useState("");
+        const { games, loading, error } = useGames();
+
+        // Prevent form submit from reloading the page
+        const handleSearchSubmit = (e) => {
+          e.preventDefault();
+          // Since the input’s onChange is already updating "search",
+          // no extra action is required here.
+        };
+
+        return (
+          <div className="home">
+            <header className="hero">
+              <h1 className="mainHeader">
+                Discover <span className="colorfull">PURE</span> entertainment
+              </h1>
+              <h6 className="about">
+                Your go-to stop for any unbl0ckable game without ads
+              </h6>
+              <form
+                className="searchBox"
+                onSubmit={handleSearchSubmit}
+              >
+                <input
+                  type="text"
+                  className="textInput"
+                  placeholder="Search all games..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="searchBtn"
+                >
+                  <span className="material-symbols-outlined">search</span>
+                </button>
+              </form>
+            </header>
+            <main>
+              {loading ? (
+                <div className="loading">Loading games...</div>
+              ) : error ? (
+                <div className="error">Failed to load games.</div>
+              ) : (
+                <GameGrid
+                  games={games}
+                  search={search}
+                />
+              )}
+            </main>
+          </div>
+        );
+      }
+
+      function CategoryPage({ category }) {
+        const [search, setSearch] = React.useState("");
+        const { games, loading, error } = useGames(category);
+
+        const handleSearchSubmit = (e) => {
+          e.preventDefault();
+        };
+
+        return (
+          <div className="categoryPage">
+            <header className="hero">
+              <h1
+                className="mainHeader"
+                style={{ textTransform: "capitalize" }}
+              >
+                {category} Games
+              </h1>
+              <form
+                className="searchBox"
+                onSubmit={handleSearchSubmit}
+              >
+                <input
+                  type="text"
+                  className="textInput"
+                  placeholder={`Search in ${category}...`}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="searchBtn"
+                >
+                  <span className="material-symbols-outlined">search</span>
+                </button>
+              </form>
+            </header>
+            <main>
+              {loading ? (
+                <div className="loading">Loading games...</div>
+              ) : error ? (
+                <div className="error">Failed to load games.</div>
+              ) : (
+                <GameGrid
+                  games={games}
+                  search={search}
+                />
+              )}
+            </main>
+          </div>
+        );
+      }
+
+      // REUSEABLE COMPONENTS
+
+      // Navigation
+      function Nav() {
+        const [open, setOpen] = React.useState(false);
+
+        function handleNav(newPage) {
+          page = newPage;
+          root.render(<Emerald />);
+          setOpen(false); // close nav on navigation
+        }
+
+        return (
+          <>
+            <button
+              className="navToggleBtn"
+              onClick={() => setOpen((o) => !o)}
+              style={{
+                position: "fixed",
+                top: "2rem",
+                left: open ? "16vw" : "2rem",
+                zIndex: 1001,
+                background: "#222",
+                color: "#fff",
+                borderRadius: "50%",
+                width: "4rem",
+                height: "4rem",
+                fontSize: "2.5rem",
+                border: "none",
+                boxShadow: "0 2px 8px #0007",
+                transition: "left 0.3s",
+              }}
+              aria-label={open ? "Close navigation" : "Open navigation"}
+            >
+              {open ? "✕" : "☰"}
+            </button>
+            <nav
+              className="mainNav"
+              style={{
+                left: open ? 0 : "-18vw",
+                transition: "left 0.3s",
+                zIndex: 1000,
+              }}
+            >
+              <ul className="navItems">
+                <li>
+                  <button
+                    className="navLink navHeader"
+                    onClick={() => handleNav("home")}
+                  >
+                    EMERALD
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="navLink"
+                    onClick={() => handleNav("home")}
+                  >
+                    Home
+                  </button>
+                </li>
+                {categories.map((cat) => (
+                  <li key={cat}>
+                    <button
+                      className="navLink"
+                      id={cat}
+                      onClick={() => handleNav(cat)}
+                    >
+                      {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </>
+        );
+      }
+
+      // Footer
+      function Footer() {
+        return (
+          <footer>
+            <ul className="footLinks">
+              <li>
+                <span className="fooLink">Made by Wande inc.</span>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/Wande-inc/Emerald/tree/main"
+                  className="fooLink"
+                >
+                  https://github.com/Wande-inc/Emerald/tree/main
+                </a>
+              </li>
+            </ul>
+          </footer>
+        );
+      }
+
+      async function openGame(iframeUrl, parent) {
+        // Construct the URL to fetch the HTML content.
+        while (iframeUrl.includes("%252F")) {
+          iframeUrl = iframeUrl.replace("%252F", "/");
+        }
+
+        // Fetch the HTML content.
+        const response = await fetch(iframeUrl);
+        const fetchedHtml = await response.text();
+
+        // Wrap the fetched HTML in a standard HTML document.
+        const fullScreenHtml = fetchedHtml;
+
+        // Create the iframe.
+        const iframe = document.createElement("iframe");
+        iframe.style.border = "none";
+        // Optionally, style the iframe to take up 100% of its container.
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = 0;
+        iframe.id = "gameIframe";
+        // Insert the iframe into the container.
+        const container = document.querySelector(parent);
+        if (!container) {
+          console.error("Container element not found:", containerSelector);
+          return;
+        }
+        container.style.padding = 0;
+        container.style.width = "100%";
+        container.style.height = "100%";
+
+        container.appendChild(iframe);
+
+        // Write the full HTML into the iframe.
+        const iframeDoc =
+          iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(fullScreenHtml);
+        iframeDoc.close();
+      }
+    </script>
+  </body>
+</html>
