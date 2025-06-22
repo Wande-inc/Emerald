@@ -15,6 +15,10 @@
 <br><br>
 2. Use the script tag <code><script src="https://bit.ly/emeraldJS"></script></code> in ANY html runner
 <br><br>
+<h3>Troubleshooting:</h3>
+<li><b>IF THE bit.ly LINK DOESN'T WORK</b> - replace with: <a href="https://cdn.jsdelivr.net/gh/Wande-inc/Emerald/assets/site.js">https://cdn.jsdelivr.net/gh/Wande-inc/Emerald/assets/site.js</a></li>
+<li>You can also try downloading the <code>index.html</code> file in <code>assets -> index.html</code> and opening that in your browser</li>
+<br>
 <h3>Games:</h3>
 <blockquote><i>*Recenly added means it might take a while for the site to be updated</i></blockquote>
 <table>
