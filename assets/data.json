@@ -19,5 +19,12 @@
         "img":"jpg",
         "category":"platformer",
         "details":"Race down an endless blocky city"
+    },
+    {
+        "name":"2048",
+        "id":"2048",
+        "img":"png",
+        "category":"strategy",
+        "details":"Carefully combine colored blocks until you get 2048"
     }
 ]
