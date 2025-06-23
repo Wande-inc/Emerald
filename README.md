@@ -23,8 +23,9 @@
 <blockquote><i>*Recenly added means it might take a while for the site to be updated</i></blockquote>
 <table>
   <tr><th>Current</th><th>Recently added</th></tr>
-  <tr><td>Basketball Stars</td><td>Slope</td></tr>
-  <tr><td>Paper IO 2</td></tr>
+  <tr><td>Basketball Stars</td><td>2048</td></tr>
+  <tr><td>Paper IO 2</td><td></td></tr>
+  <tr><td>Slope</td><td></td></tr>
 </table>
 <br>
 <h3>Releases:</h3>
