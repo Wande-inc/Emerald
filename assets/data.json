@@ -26,5 +26,12 @@
         "img":"png",
         "category":"strategy",
         "details":"Carefully combine colored blocks until you get 2048"
+    },
+    {
+        "name":"stealth master",
+        "id":"stealth-master",
+        "img":"jpg",
+        "category":"fighting",
+        "details":"Hunt down bounties without getting caught"
     }
 ]
