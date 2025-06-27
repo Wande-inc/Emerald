@@ -26,5 +26,12 @@
         "img":"png",
         "category":"strategy",
         "details":"Carefully combine colored blocks until you get 2048"
+    },
+    {
+        "name":"madalin stunt cars",
+        "id":"madalin-stunt-cars",
+        "img":"jpg",
+        "category":"racing",
+        "details":"Race and drift across an open free world"
     }
 ]
